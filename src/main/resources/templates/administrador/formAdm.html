@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<title>Cadastro de Administradores</title>
+<link rel="icon" type="image/x-icon" href="chefe.png">
+<style type="text/css">
+.princ {
+	position: fixed;
+	top: 15%;
+	left: 30%;
+	border: solid 2px #fff;
+	background-color: #fff;
+	padding: 50px;
+}
+
+
+.msgSucesso{
+	background-color: #9AEBA3;
+	padding:2em;
+}
+
+.msgerro{
+
+background-color: red;
+
+
+}
+
+.nav-wrapper{
+
+background-color:#0FC2C0;
+}
+
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+	<div class="princ">
+		<h2>Cadastro de Administrador</h2>
+		<div class="row">
+			<form class="col s12" action="SalvarAdministrador" method="post">
+			<input type="hidden" th:value="${adm?.id}" name="id">
+				<div class="row">
+					<div class="input-field col s6">
+
+						<input id="first_name" type="text" class="validate" name="nome"th:value="${adm?.nome}">
+
+						<label for="first_name">Nome:</label>
+					</div>
+					<div class="input-field col s6">
+						<input id="last_name" type="email" class="validate" name="email" th:value="${adm?.email}">
+						<label for="last_name">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" name="senha">
+						<label for="password">Senha</label>
+					</div>
+				</div>
+
+				<button class="btn waves-effect waves-light" type="submit"
+					name="action">
+					Adicionar <i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+		<br> <br>
+	
+		<div th:replace="fragments/mensagem"></div>
+
+	</div>
+
+	
+</html>

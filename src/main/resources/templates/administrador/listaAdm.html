@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdn.es.gov.br/fonts/font-awesome/css/font-awesome.min.css">
+
+<title>ClinicGuia | Lista</title>
+<style>
+
+h2{
+
+font-size: 1.8em;
+text-align: center;
+}
+
+nav .nav-wrapper{
+background-color:#0FC2C0;
+
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+
+
+</style>
+
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+    <div class="logo">
+      <img src="/pin-de-localizacao.png" class="brand-logo"> 
+     
+      </div>
+       <div class="titulo">
+      <a href="#" class="brand-logo">ClinicGuia</a>
+      </div>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+ 
+<h2>Lista de Administradores</h2>
+<div class="container">
+	<table>
+		<thead>
+			<tr>
+			<th>Id
+			<th>Nome
+			<th>Email
+			
+			<th>Excluir
+			<th>Alterar
+			</tr>
+		</thead>
+		<tbody>
+		<tr th:each="adm:${admin}">
+			<td th:text="${adm.id}"/>
+			<td th:text="${adm.nome}"/>
+			<td th:text="${adm.email}"/>
+			<td><a th:href="@{/excluirAdm(id=${adm.id})}"> <i class="large material-icons" style="font-size: 2em; color:#0FC2C0">delete_sweep</i></a>
+			<td><a th:href="@{/alterarAdm(id=${adm.id})}"><i class="large material-icons" style="font-size: 2em; color:#0FC2C0">editar</i></a>
+		</tr>
+		</tbody>
+	
+	</table>
+	
+	 <ul class="pagination">
+      <li th:class="${paginaAtual == 1 ? 'disabled' : ''}"><a th:href="${paginaAtual > 1 ? paginaAtual - 1 : '#'}"><i class="material-icons">chevron_left</i></a></li>
+     <li th:each="p:${numPaginas}" th:class="${paginaAtual == p ? 'active black' : 'waves-effect'}"><a th:href="${p}"><span th:text="${p}"></span></a></li>
+    <li th:class="${paginaAtual == totalPaginas ? 'disabled' : ''}"><a th:href="${paginaAtual < totalPaginas ? paginaAtual+1 : '#'}"><i class="material-icons">chevron_right</i></a></li>
+   
+  	</ul>
+</div>
+
+ 
+</body>
+</html>
