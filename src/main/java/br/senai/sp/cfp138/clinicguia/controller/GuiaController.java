@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.senai.sp.cfp138.clinicguia.model.Administrador;
 import br.senai.sp.cfp138.clinicguia.repository.AdminRepository;
+import br.senai.sp.cfp138.clinicguia.util.HashUtil;
 
 @Controller
 public class GuiaController {
@@ -45,10 +46,33 @@ public class GuiaController {
 			return "redirect:formAdm";
 		}
 		
+		//verifica se esta sendo feita uma alteração ao invés de uma inserção
+		boolean alteracao = adm.getId() != null ? true : false;
+		
+		//verifica se a senha esta vazia
+		if(adm.getSenha().equals(HashUtil.hash256(""))) {
+			
+			//se nao for alteracao, a primeira parte do email sera a senha
+			if(!alteracao) {
+				String parte = adm.getEmail().substring(0, adm.getEmail().indexOf("@"));
+				
+				//definindo  a senha do adm
+				
+				adm.setSenha(parte);
+			}else {
+				
+				String hash = repository.findById(adm.getId()).get().getSenha();
+				
+				//setando a senha com o hash
+				
+				adm.setSenhaComHash( hash);
+			}
+		}
 		try {
 			//salvando administrador
 			repository.save(adm);
-			attr.addFlashAttribute("mensagemSucesso", "Administrador cadastrado com sucesso. ID:" +adm.getId());
+			attr.addFlashAttribute("mensagemSucesso", "Administrador cadastrado com sucesso. Caso a senha não tenha sido informada no cadastro, "
+					+ "a primeira parte do Email será inserido como senha temporária. ID:" +adm.getId());
 			return"redirect:formAdm";
 			
 		} catch (Exception e) {

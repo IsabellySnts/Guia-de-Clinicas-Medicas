@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<title>Buscar Clinicas</title>
+<link rel="icon" type="image/x-icon" href="pin-de-localizacao.png">
+<style>
+body{
+background-color:#0FC2C0;
+}
+
+
+
+
+</style>
+</head>
+<body>
+<h2>Busque as Clinicas Cadastradas</h2>
+<nav>
+    <div class="nav-wrapper">
+      <form action="buscarClinica">
+        <div class="input-field">
+          <input id="search" type="search" required name="busca" placeholder="Pesquise">
+          <label class="label-icon" for="search"></label>
+          <input type="submit" value="Buscar">
+          <select th:name="select">
+          <option th:value="palavrasChave">Palavra Chave</option>
+          <option th:value="nome">Nome</option>
+          <option th:value="descricao">Descrição</option>
+          </select>
+        </div>
+      </form>
+     
+  </nav>
+
+</body>
+</html>

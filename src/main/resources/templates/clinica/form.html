@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Cadastro Clinica</title>
+<link rel="icon" type="image/x-icon" href="pin-de-localizacao.png">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<style type="text/css">
+	
+	.container{
+	
+	margin-left: 30%;
+	}
+	
+	fieldset{
+
+	width: 200%;	
+	}
+	
+	
+
+nav .nav-wrapper{
+background-color:#0FC2C0;
+
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+	
+
+	
+	</style>
+	
+
+</head>
+
+<body>
+
+<nav th:replace="fragments/padrao :: cabecalho"></nav>
+
+	<div class="container">
+	<div class="row">
+	<h2>Cadastre a Clinica</h2>
+
+			<form class="col s4" action="SalvarClinica" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+
+			<fieldset>
+				<div class="row">
+					<div class="input-field col s12">
+						
+						<input id="first_name" type="text" class="validate" name="nome">
+						
+						<label for="first_name">Nome:</label>
+					
+					</div>
+					<div class="input-field col s12">
+						<input id="last_name" type="text" class="validate" name="descricao" >
+						<label for="last_name">Descrição:</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="cep" type="text" class="validate" name="cep">
+						<label for="first_name">CEP:</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="logradouro" type="text" class="validate" name="endereco" readonly="readonly" placeholder=" ">
+						<label for="last_name">Endereço:</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="numero" type="text" class="validate" name="numero">
+						<label for="first_name">Numero:</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="bairro" type="text" class="validate" name="bairro" readonly="readonly" placeholder=" ">
+						<label for="last_name">Bairro:</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="cidade" type="text" class="validate" name="cidade" readonly="readonly" placeholder=" ">
+						<label for="first_name">Cidade:</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="uf" type="text" class="validate" name="estado" readonly="readonly" placeholder=" ">
+						<label for="last_name">Estado:</label>
+					</div>
+					
+				</div>
+					<div class="row">
+					<div class="input-field col s12">
+						<input id="first_name" type="text" class="validate" name="complemento">
+						<label for="first_name">Complemento:</label>
+						
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="first_name" type="text" class="validate" name="redesSociais">
+						<label for="first_name">Redes Sociais:</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="last_name" type="text" class="validate" name="telefone" >
+						<label for="last_name">Telefone:</label>
+					</div>
+					
+				</div>
+				
+
+				<label>Estacionamento:</label>			
+				     <p>
+					      <label>
+					        <input type="checkbox" name="estacionamento" />
+					        <span>Estacionamento</span>
+					      </label>
+					 </p>
+				   
+			 <div class="input-field col s12">
+			    	<select name="tipo">
+			    	<option value="Escolha" disabled="disabled" selected="selected">Escolha o tipo da clinica
+			   	 		 <option th:each= "t:${tipo}" th:text="${t.nome}" th:value="${t.id}"></option>
+			      </select>
+			   
+			  </div>
+			  
+			  <div class="input-field col s12">
+			
+						<input id="last_name" type="file" class="validate" name="inputFotos" multiple="multiple" accept="image/*" >
+					
+					</div>
+				
+
+				<button class="btn waves-effect waves-light" type="submit"
+					name="action">
+					Salvar<i class="material-icons right">send</i>
+				</button>
+				</fieldset>
+			</form>
+			</div>
+		</div>
+	
+	
+
+	
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script>
+	$(document).ready(function() {
+	$('select').formSelect();
+	});
+</script>
+<script type="text/javascript" src="/cep.js"></script>
+
+</body>
+</html>

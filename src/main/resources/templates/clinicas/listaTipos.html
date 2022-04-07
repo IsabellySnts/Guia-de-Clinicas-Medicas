@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Clinicas Cadastradas</title>
+<link rel="icon" type="image/x-icon" href="pin-de-localizacao.png">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdn.es.gov.br/fonts/font-awesome/css/font-awesome.min.css">
+ <style>
+
+h2{
+
+font-size: 1.8em;
+text-align: center;
+}
+
+nav .nav-wrapper{
+background-color:#0FC2C0;
+
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+
+.page-footer{
+background-color:#0FC2C0;
+margin-top: 2.3em;
+}
+
+.page-footer{
+
+position: fixed;
+width: 100%;
+}
+
+
+      
+
+</style>
+</head>
+<body>
+<nav th:replace="fragments/padrao :: cabecalho"></nav>
+
+<div class="container">
+	<table>
+		<thead>
+			<tr>
+			<th>Id
+			<th>Nome
+			<th>Descrição da Clinica
+			<th>Palavras-Chaves
+			<th>Excluir
+			<th>Alterar
+			</tr>
+		</thead>
+		
+		<tbody>
+		<tr th:each="clin:${clinica}">
+			<td th:text="${clin.id}"/>
+			<td th:text="${clin.nome}"/>
+			<td th:text="${clin.descricao}"/>
+			<td th:text="${clin.palavrasChave}"/>
+			<td><a th:href="@{/excluirClinica(id=${clin.id})}"> <i class="large material-icons" style="font-size: 2em; color:#0FC2C0">delete_sweep</i></a>
+			<td><a th:href="@{/alterarClinica(id=${clin.id})}"><i class="large material-icons" style="font-size: 2em; color:#0FC2C0">editar</i></a>
+			
+		</tr>
+		</tbody>
+	
+	</table>
+	
+	
+	
+</div>
+
+</body>
+</html>

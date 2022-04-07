@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
+
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -10,15 +11,56 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <title>Cadastro de Administradores</title>
-<link rel="icon" type="image/x-icon" href="chefe.png">
+<link rel="icon" type="image/x-icon" href="pin-de-localizacao.png">
 <style type="text/css">
+
+h2{
+
+font-size: 1.8em;
+text-align: center;
+}
+
+nav .nav-wrapper{
+background-color:#0FC2C0;
+
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+
+.page-footer{
+background-color:#0FC2C0;
+margin-top: 2.3em;
+}
+
+.page-footer{
+
+position: fixed;
+width: 100%;
+}
+
+body{
+background-color: #fff;
+}
 .princ {
 	position: fixed;
 	top: 15%;
 	left: 30%;
 	border: solid 2px #fff;
-	background-color: #fff;
 	padding: 50px;
+	border: 3px solid #0FC2C0;
 }
 
 
@@ -34,26 +76,14 @@ background-color: red;
 
 }
 
-.nav-wrapper{
-
-background-color:#0FC2C0;
-}
 
 
 </style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav th:replace="fragments/padrao :: cabecalho"></nav>
+ 
 
 	<div class="princ">
 		<h2>Cadastro de Administrador</h2>
@@ -89,8 +119,12 @@ background-color:#0FC2C0;
 		<br> <br>
 	
 		<div th:replace="fragments/mensagem"></div>
-
+		
 	</div>
-
+	
+  
+	
+	
+</body>
 	
 </html>
