@@ -61,28 +61,29 @@ margin-left: 7em;
 	<h2>Cadastre a Clinica</h2>
 
 			<form class="col s4" action="SalvarClinica" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+				<input type="hidden" th:value="${clinica?.id}" name="id">
 
 			<fieldset>
 				<div class="row">
 					<div class="input-field col s12">
 						
-						<input id="first_name" type="text" class="validate" name="nome">
+						<input id="first_name" type="text" class="validate" name="nome" th:value="${clinica?.nome}">
 						
 						<label for="first_name">Nome:</label>
 					
 					</div>
 					<div class="input-field col s12">
-						<input id="last_name" type="text" class="validate" name="descricao" >
+						<input id="last_name" type="text" class="validate" name="descricao" th:value="${clinica?.descricao}" >
 						<label for="last_name">Descrição:</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<input id="cep" type="text" class="validate" name="cep">
+						<input id="cep" type="text" class="validate" name="cep" th:value="${clinica?.cep}">
 						<label for="first_name">CEP:</label>
 					</div>
 					<div class="input-field col s12">
-						<input id="logradouro" type="text" class="validate" name="endereco" readonly="readonly" placeholder=" ">
+						<input id="logradouro" type="text" class="validate" name="endereco" readonly="readonly" placeholder=" " th:value="${clinica?.endereco}">
 						<label for="last_name">Endereço:</label>
 					</div>
 				</div>
@@ -92,24 +93,24 @@ margin-left: 7em;
 						<label for="first_name">Numero:</label>
 					</div>
 					<div class="input-field col s12">
-						<input id="bairro" type="text" class="validate" name="bairro" readonly="readonly" placeholder=" ">
+						<input id="bairro" type="text" class="validate" name="bairro" readonly="readonly" placeholder=" " th:value="${clinica?.bairro}">
 						<label for="last_name">Bairro:</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<input id="cidade" type="text" class="validate" name="cidade" readonly="readonly" placeholder=" ">
+						<input id="cidade" type="text" class="validate" name="cidade" readonly="readonly" placeholder=" " th:value="${clinica?.cidade}">
 						<label for="first_name">Cidade:</label>
 					</div>
 					<div class="input-field col s12">
-						<input id="uf" type="text" class="validate" name="estado" readonly="readonly" placeholder=" ">
+						<input id="uf" type="text" class="validate" name="estado" readonly="readonly" placeholder=" " th:value="${clinica?.estado}">
 						<label for="last_name">Estado:</label>
 					</div>
 					
 				</div>
 					<div class="row">
 					<div class="input-field col s12">
-						<input id="first_name" type="text" class="validate" name="complemento">
+						<input id="first_name" type="text" class="validate" name="complemento" th:value="${clinica?.complemento}">
 						<label for="first_name">Complemento:</label>
 						
 					</div>
@@ -117,11 +118,11 @@ margin-left: 7em;
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<input id="first_name" type="text" class="validate" name="redesSociais">
+						<input id="first_name" type="text" class="validate" name="redesSociais" th:value="${clinica?.redesSociais}">
 						<label for="first_name">Redes Sociais:</label>
 					</div>
 					<div class="input-field col s12">
-						<input id="last_name" type="text" class="validate" name="telefone" >
+						<input id="last_name" type="text" class="validate" name="telefone" th:value="${clinica?.telefone}">
 						<label for="last_name">Telefone:</label>
 					</div>
 					
@@ -131,15 +132,15 @@ margin-left: 7em;
 				<label>Estacionamento:</label>			
 				     <p>
 					      <label>
-					        <input type="checkbox" name="estacionamento" />
+					        <input type="checkbox" name="estacionamento" th:checked="${clinica?.estacionamento}" />
 					        <span>Estacionamento</span>
 					      </label>
 					 </p>
 				   
 			 <div class="input-field col s12">
-			    	<select name="tipo">
+			    	<select name="tipo.id">
 			    	<option value="Escolha" disabled="disabled" selected="selected">Escolha o tipo da clinica
-			   	 		 <option th:each= "t:${tipo}" th:text="${t.nome}" th:value="${t.id}"></option>
+			   	 		 <option th:each= "t:${tipo}" th:text="${t.nome}" th:value="${t.id}" th:selected="${t.id==clinica?.tipo?.id}" ></option>
 			      </select>
 			   
 			  </div>
@@ -148,6 +149,24 @@ margin-left: 7em;
 			
 						<input id="last_name" type="file" class="validate" name="inputFotos" multiple="multiple" accept="image/*" >
 					
+					</div>
+					
+					<div th:if="${clinica?.fotos?.length > 0 }">
+					<h6>Fotos Cadastradas</h6>
+					
+						<div>
+						
+						<ul id="lista_fotos_cadrest">
+						
+							<li th:each="fotos, i  : ${clinica?.verFotos()}">
+						
+								<a th:href="${fotos}" target="blank"><img th:src="${fotos}"></a>
+								<a th:href="@{/excluirFotoClinica(idClinica=${clinica.id}, numFoto = ${i.index})}">
+								<button>Excluir</button>
+								</a>
+						</ul>
+						
+						</div>
 					</div>
 				
 

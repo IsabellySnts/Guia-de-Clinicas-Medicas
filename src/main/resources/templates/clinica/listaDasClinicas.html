@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdn.es.gov.br/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="icon" type="image/x-icon" href="pin-de-localizacao.png">
+
+ <style>
+
+
+      
+
+</style>
+</head>
+<body>
+
+
+<div class="container" style="margin: 40px">
+	<table border="1" >
+		<thead >
+			<tr>
+			<th>Id
+			<th>Nome
+			<th>Descrição da Clinica
+			<th>CEP
+			<th>Endereço
+			<th>Número
+			<th>Bairro
+			<th>Cidade
+			<th>Estado
+			<th>Complemento
+			<th>Fotos
+			<th>Tipo
+			<th>Estacionamento
+			<th>Redes-Sociais
+			<th>Telefone
+			<th>Alterar
+			</tr>
+		</thead>
+		
+		<tbody>
+		<tr th:each="clin:${clinica}">
+			<td th:text="${clin.id}"/>
+			<td th:text="${clin.nome}"/>
+			<td th:text="${clin.descricao}"/>
+			<td th:text="${clin.cep}"/>
+			<td th:text="${clin.endereco}"/>
+			<td th:text="${clin.numero}"/>
+			<td th:text="${clin.bairro}"/>
+			<td th:text="${clin.cidade}"/>
+			<td th:text="${clin.estado}"/>
+			<td th:text="${clin.complemento}"/>
+			<td th:text="${clin.fotos}"/>
+			<td th:text="${clin.tipo?.nome}"/>
+			<td th:text="${clin.estacionamento}"/>
+			<td th:text="${clin.redesSociais}"/>
+			<td th:text="${clin.telefone}"/>
+			<td><a th:href="@{/alterarClin(id=${clin.id})}"> <i class="large material-icons" style="font-size: 2em; color:#0FC2C0">editar</i></a>
+			
+		</tr>
+		</tbody>
+		
+		
+	
+	</table>
+	
+	 
+</div>
+</body>
+</html>

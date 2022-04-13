@@ -32,4 +32,9 @@ public class Clinica {
 	private boolean estacionamento;
 	private String redesSociais;
 	private String telefone;
+	
+	public String[] verFotos() {
+		
+		return this.fotos.split(";");
+	}
 }
