@@ -3,6 +3,7 @@ package br.senai.sp.cfp138.clinicguia.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.senai.sp.cfp138.clinicguia.annotation.Publico;
 import br.senai.sp.cfp138.clinicguia.model.Administrador;
 import br.senai.sp.cfp138.clinicguia.repository.AdminRepository;
 import br.senai.sp.cfp138.clinicguia.util.HashUtil;
@@ -130,5 +132,33 @@ public class GuiaController {
 		model.addAttribute("adm", adm);
 		
 		return "forward:formAdm";
+	}
+	@Publico
+	@RequestMapping ("login")
+	public String login(Administrador admLogin, RedirectAttributes attr, HttpSession session) {
+		
+		//buscar o adm no Banco de Dados através do email e da senha
+		
+		Administrador admin = repository.findByEmailAndSenha(admLogin.getEmail(), admLogin.getSenha());
+		
+		//verificando se existe o adm
+		
+		//se adm for igual a nulo
+		if(admin== null) {
+			//avisando ao usuario que nao foi encontrado
+			attr.addFlashAttribute("mensagemErro", "Login e/ou senha inválido(s)");
+			return "redirect:formLogin";
+		}else {
+			//se não for nulo, salva na sessão e acessa o sistema
+			session.setAttribute("usuarioLogado", admin);
+			return "redirect:listandoClinicas/1";
+		}
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:formLogin";
 	}
 }

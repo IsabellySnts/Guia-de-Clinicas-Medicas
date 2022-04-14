@@ -5,7 +5,6 @@ package br.senai.sp.cfp138.clinicguia.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import br.senai.sp.cfp138.clinicguia.model.Administrador;
 import br.senai.sp.cfp138.clinicguia.model.Clinica;
 import br.senai.sp.cfp138.clinicguia.repository.ClinicaRepository;
 import br.senai.sp.cfp138.clinicguia.repository.TiposRepository;
@@ -34,17 +31,19 @@ public class ClinicaController {
 	private FirebaseUtil firebaseUtil;
 	
 	
+	//metodo levando ao formulario
 	@RequestMapping("formClinica")
 	public String form(Model model) {
 	model.addAttribute("tipo", clinicrep.findAll());
 		return "clinica/form";
 	}
 	
+	//metodo para salvar as clinicas no BD
 	@RequestMapping("SalvarClinica")
 	public String salvar(Clinica clinica, @RequestParam("inputFotos") MultipartFile[] inputFotos) {
 		
 		//String para a URL das fotos
-		String fotos ="";
+		String fotos = clinica.getFotos();
 		
 		for (MultipartFile arquivo : inputFotos) {
 			//verficiando se o arquivo está vazio
@@ -69,6 +68,7 @@ public class ClinicaController {
 		return"redirect:formClinica";
 	}
 	
+	//método para listar as clinicas
 	@RequestMapping("listandoClinicas/{page}")
 	public String listarClinicas(Model model, @PathVariable ("page") int page) {
 		
@@ -100,13 +100,30 @@ public class ClinicaController {
 		return "clinica/listaDasClinicas";
 	}
 	
+	//metodo para alterar as clinicas
 	@RequestMapping("alterarClin")
-	public String alterarAdm(Model model, Long id) {
+	public String alterarClinica(Model model, Long id) {
 		
 		Clinica c = repository.findById(id).get();
 		model.addAttribute("clinica", c);
 		
 		return "forward:formClinica";
+	}
+	
+	@RequestMapping("excluindoClinica")
+	public String excluirClinic(Long id) {
+		
+		Clinica clin = repository.findById(id).get();
+		
+		//se o tamanho da foto for maior que zero fazer o for percorrendo as fotos
+		if(clin.getFotos().length() > 0) {
+			for (String foto : clin.verFotos()) {
+				firebaseUtil.deletar(foto);
+			}
+		}
+		
+	
+		return "redirect:listandoClinica/1";
 	}
 	
 	

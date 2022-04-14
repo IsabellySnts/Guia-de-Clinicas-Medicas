@@ -10,13 +10,61 @@
 
  <style>
 
+nav .nav-wrapper{
+background-color:#0FC2C0;
 
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+
+.page-footer{
+background-color:#0FC2C0;
+margin-top: 2.3em;
+}
+
+.page-footer{
+
+position: fixed;
+width: 100%;
+}
+
+body{
+background-color: #fff;
+}
+.princ {
+	position: fixed;
+	top: 15%;
+	left: 30%;
+	border: solid 2px #fff;
+	padding: 50px;
+	border: 3px solid #0FC2C0;
+}
+
+
+.msgSucesso{
+	background-color: #9AEBA3;
+	padding:2em;
+}
       
 
 </style>
 </head>
 <body>
 
+<nav th:replace="fragments/padrao :: cabecalho"></nav>
 
 <div class="container" style="margin: 40px">
 	<table border="1" >
@@ -59,6 +107,8 @@
 			<td th:text="${clin.redesSociais}"/>
 			<td th:text="${clin.telefone}"/>
 			<td><a th:href="@{/alterarClin(id=${clin.id})}"> <i class="large material-icons" style="font-size: 2em; color:#0FC2C0">editar</i></a>
+			<td><a th:href="@{/excluindoClinica(id=${clin.id})}">Excluir</a>
+			
 			
 		</tr>
 		</tbody>

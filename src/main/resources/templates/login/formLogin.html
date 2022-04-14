@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.es.gov.br/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<title>Conecte-se</title>
+<style type="text/css">
+
+h2{
+
+font-size: 1.8em;
+text-align: center;
+}
+
+nav .nav-wrapper{
+background-color:#0FC2C0;
+
+}
+
+.brand-logo{
+width: 3%;
+margin-left: 5em;
+
+}
+
+.logo{
+display: flex;
+}
+
+.titulo a{
+font-size: 2em;
+margin-left: 7em;
+}
+
+.page-footer{
+background-color:#0FC2C0;
+margin-top: 2.3em;
+}
+
+.page-footer{
+
+position: fixed;
+width: 100%;
+}
+
+body{
+background-color: #fff;
+}
+.princ {
+	position: fixed;
+	top: 15%;
+	left: 35%;
+	border: solid 2px #fff;
+	padding: 50px;
+	border: 3px solid #0FC2C0;
+}
+
+
+.msgSucesso{
+	background-color: #9AEBA3;
+	padding:2em;
+}
+
+.msgerro{
+
+background-color: red;
+
+
+}
+</style>
+</head>
+<body>
+<div class="princ">
+		<h2>Login</h2>
+		<div class="row">
+			<form class="col s12" action="login" method="post" >
+			<input type="hidden" >
+				<div class="row">
+					
+					
+					<div class="input-field col s12">
+						
+						<input id="last_name" type="email" class="validate" name="email" placeholder="Email" style="margin-left: 2em">
+						
+						<label for="last_name"><i class="material-icons">email_contato</i></label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" name="senha" placeholder="Password" style="margin-left: 2em">
+						<label for="password"><i class="material-icons">lock_outline</i></label>
+					</div>
+				</div>
+
+				<button class="btn waves-effect waves-light" type="submit"
+					name="action">
+					Entrar <i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+</div>
+		<br> <br>
+	
+		
+</body>
+</html>

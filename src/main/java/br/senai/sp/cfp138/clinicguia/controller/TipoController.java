@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import br.senai.sp.cfp138.clinicguia.model.Administrador;
 import br.senai.sp.cfp138.clinicguia.model.TipoClinica;
 import br.senai.sp.cfp138.clinicguia.repository.TiposRepository;
 

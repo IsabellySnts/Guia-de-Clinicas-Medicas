@@ -6,6 +6,6 @@ import br.senai.sp.cfp138.clinicguia.model.Administrador;
 
 public interface AdminRepository extends PagingAndSortingRepository<Administrador, Long>{
 	
-	
+	public Administrador findByEmailAndSenha(String email, String senha);
 
 }
